@@ -1,0 +1,162 @@
+:root {
+    --background: #0F0F0F;
+    --foreground: #F0F0F0;
+    --link: #C00000;
+    --background-alt1: #3F3F3F;
+    --background-alt2: #5F5F5F;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'JetBrainsMono';
+    font-size: 20px;
+}
+
+body {
+    background: var(--background);
+    color: var(--foreground);
+}
+
+a {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--link);
+    padding: 2px;
+    transition: padding .2s ease,
+                font-size .2s ease;
+}
+
+a:hover {
+    padding: 0;
+    font-size: 22px;
+}
+
+h1 {
+    font-size: 50px;
+    margin: 30px 0 15px 50px;
+}
+
+ul {
+    display: inline-block;
+    margin-left: 80px;
+}
+
+ul li {
+    display: block;
+    background: var(--background-alt1);
+    padding: 10px 15px;
+    border-radius: 20px;
+    width: calc(100vw - 200px);
+    margin: 10px 0 10px 0;
+}
+
+ul li:last-child {
+    margin-bottom: 50px;
+}
+
+ul li strong {
+    display: inline-block;
+    width: calc(100% - 220px);
+}
+
+button[type="submit"] {
+    cursor: pointer;
+}
+
+.editPost,
+.editComment {
+    display: inline-block;
+    margin: 50px 0 0 50px;
+}
+
+.createPost,
+.addComment {
+    margin-left: 30px;
+    position: relative;
+}
+
+.createPost #createPost_drawer,
+.addComment #addComment_drawer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 132px;
+    height: 25px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.addComment #addComment_drawer { width: 160px; }
+
+.createPost form,
+.addComment form {
+    overflow: hidden;
+    max-height: 0;
+    background: var(--background-alt1);
+    border-radius: 15px;
+    transition: max-height .5s ease;
+}
+
+.createPost:has(#createPost_drawer:checked) .drawerHandle,
+.addComment:has(#addComment_drawer:checked) .drawerHandle {
+    display: none;
+}
+
+.createPost:has(#createPost_drawer:checked) form,
+.addComment:has(#addComment_drawer:checked) form {
+    max-height: 400px;
+    padding: 10px;
+}
+
+.createPost #createPost_drawer:checked,
+.addComment #addComment_drawer:checked {
+    top: 310px;
+    left: 155px;
+    width: 78px;
+}
+
+.created {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+}
+
+.back {
+    position: absolute;
+    top: 60px;
+    right: 30px;
+}
+
+.content {
+    margin: 0 100px 50px 50px;
+    padding: 15px;
+    border-radius: 15px;
+    background: var(--background-alt1);
+}
+
+.comments {
+    margin: 0 100px 50px 50px;
+}
+
+.comment {
+    margin: 10px 0 10px 0;
+}
+
+.comment .commentHeader {
+    background: var(--background-alt2);
+    border-radius: 15px 15px 0 0;
+    padding: 10px;
+}
+
+.comment .commentHeader .commentAuthor {
+    display: inline-block;
+    width: calc(100% - 160px);
+}
+
+.comment .commentText {
+    background: var(--background-alt1);
+    border-radius: 0 0 15px 15px;
+    padding: 10px;
+}

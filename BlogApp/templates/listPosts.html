@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Home - {% endblock %}
+
+{% block pageTitle %}All Posts{% endblock %}
+
+{% block pageContent %}
+    <ul>
+        {% for post in posts %}
+            {% url 'ViewPost' post.pk as postLink %}
+            <li><strong>{{ post.title }}</strong> <a href="{{ postLink }}">View</a> <a href="{% url 'EditPost' id=post.pk %}">Edit</a> <a href="{% url 'DeletePost' id=post.pk %}">Delete</a></li>
+        {% endfor %}
+    </ul>
+    <div class="createPost">
+        <input type="checkbox" id="createPost_drawer">
+        <span class="drawerHandle">Create Post</span>
+        <form action="{% url 'CreatePost' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Create Post</button>
+            <span class="cancel">Cancel</span>
+        </form>
+    </div>
+{% endblock %}

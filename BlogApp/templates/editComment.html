@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Comment - {% endblock %}
+
+{% block pageTitle %}Edit Comment{% endblock %}
+
+{% block pageContent %}
+    <form class="editComment" action="{% url 'EditComment' id=comment.pk %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Edit Comment</button>
+        <a href="{% url 'ViewPost' id=postID %}">Cancel</a>
+    </form>
+{% endblock %}

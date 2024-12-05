@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }} - {% endblock %}
+
+{% block pageTitle %}{{ post.title }}{% endblock %}
+
+{% block pageContent %}
+    <span class="created">{{ post.created_at }}</span>
+    <a class="back" href="{% url 'ListPosts' %}">Go Back</a>
+    <div class="content">{{ post.content }}</div>
+    <div class="comments">
+        {% for comment in comments %}
+            <div class="comment">
+                <div class="commentHeader">
+                    <span class="commentAuthor">{{ comment.author }}</span>
+                    <a class="commentEdit" href="{% url 'EditComment' id=comment.pk %}">Edit</a>
+                    <a class="commentDelete" href="{% url 'DeleteComment' id=comment.pk %}">Delete</a>
+                </div>
+                <div class="commentText">{{ comment.text }}</div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="addComment">
+        <input type="checkbox" id="addComment_drawer">
+        <span class="drawerHandle">Add a comment</span>
+        <form action="{% url 'AddComment' id=post.pk %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Add Comment</button>
+            <span class="cancel">Cancel</span>
+        </form>
+    </div>
+{% endblock %}
